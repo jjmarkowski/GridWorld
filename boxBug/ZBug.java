@@ -38,6 +38,8 @@ public class ZBug extends Bug
         sideLength = length;
         turn();
         turn();
+        move();
+        sideLength++;
     }
 
     /**
@@ -46,16 +48,21 @@ public class ZBug extends Bug
     public void act()
     {
         if (steps < sideLength && total < (sideLength*3)+1) {
-            
-        }
-        else if (steps < sideLength && canMove())
-        {
             move();
             steps++;
             total++;
         }
         else if (total == sideLength)
         {
+            turn();
+            turn();
+            turn();
+            steps = 0;
+        }
+        else if (total ==sideLength*2)
+        {
+            turn();
+            turn();
             turn();
             turn();
             turn();
