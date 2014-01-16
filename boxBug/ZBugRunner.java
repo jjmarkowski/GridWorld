@@ -12,8 +12,6 @@ public class ZBugRunner
     public static void main(String[] args)
     {
         ActorWorld world = new ActorWorld();
-        //CircleBug alice = new CircleBug(3);
-        //alice.setColor(Color.ORANGE);
         ZBug bob = new ZBug(4);
         //world.add(new Location(7, 8), alice);
         world.add(new Location(5, 5), bob);
