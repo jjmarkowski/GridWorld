@@ -35,7 +35,7 @@ public class ChameleonCritter extends Critter
     private static final double DARKENING_FACTOR = 0.1;
     /**
      * Randomly selects a neighbor and changes this critter's color to be the
-     * same as that neighbor's. If there are no neighbors, no action is taken.
+     * same as that neighbor's. If there are no neighbors, it darkens.
      */
     public void processActors(ArrayList<Actor> actors)
     {

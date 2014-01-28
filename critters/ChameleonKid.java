@@ -1,17 +1,38 @@
+import info.gridworld.actor.Actor;
+import info.gridworld.actor.Critter;
+import info.gridworld.grid.Location;
+import info.gridworld.grid.Grid;
+
+import java.util.ArrayList;
+
 public class ChameleonKid extends ChameleonCritter {
 
-	public void processActors(ArrayList<Actor> actors)
+	public ArrayList<Actor> getActors()
 	{
-	    int n = actors.size();
-	    if (n == 0)
-	    {
-	        darken();
-	        return;
-	    }
-	    int r = (int) (Math.random() * n);
+		ArrayList<Actor> actors = new ArrayList<Actor>();
+		Location loc = getLocation();
 
-	    Actor other = actors.get(r);
-	    setColor(other.getColor());
+		Grid<Actor> gr = getGrid();
+		if (gr == null)
+		    return;
+
+		Location front = get(loc.getAdjacentLocation(getDirection()));
+		Location behind = get(loc.getAdjacentLocation(getDirection()) +180);
+		if (gr.isValid(front)) {
+			Actor actorFront = getGrid().get(front);
+		} else if (gr.isValid(behind)){
+			Actor actorBehind = getGrid().get(behind);
+		} else {
+			return;
+		}
+
+		if (actorFront != null) {
+			actors.add(actorFront);
+		}
+		if (actorBehind != null) {
+			actors.add(actorBehind);	
+		}
+	    return actors;
 	}
 	
 }
