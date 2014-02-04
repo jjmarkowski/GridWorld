@@ -23,11 +23,12 @@ public class BlusterCritter extends Critter {
         		n++;
         	}
         }
+        System.out.println(n);
 
         if (n >= courage) {
-            changeColor(-.1);
+            darken(50);
         } else {
-        	changeColor(.1);
+        	lighten(50);
         }
 
         return;
@@ -36,14 +37,13 @@ public class BlusterCritter extends Critter {
     public ArrayList<Actor> getActors() {
     	ArrayList<Actor> actors = new ArrayList<Actor>();
 
-    	for (int row = getLocation().getRow()-2; row<=2; row++) {
-    		for (int col = getLocation().getCol()-2; col<=2; col++) {
-
+    	for (int row = getLocation().getRow()-2; row<=getLocation().getRow()+2; row++) {
+    		for (int col = getLocation().getCol()-2; col<=getLocation().getCol()+2; col++) {
+                
     			Location loc = new Location(row, col);
 
     			if (getGrid().isValid(loc)) {
     				Actor actor = getGrid().get(loc);
-
     				if (actor != null) {
     					actors.add(actor);
     				}
@@ -54,23 +54,41 @@ public class BlusterCritter extends Critter {
     	return actors;
     }
 
-    public void changeColor(double factor) {
+    public void darken(double factor) {
     	Color c = getColor(); 
 
-    	int red = c.getRed();
-    	int green = c.getGreen();
-    	int blue = c.getBlue();
+        int red = c.getRed();
+        int green = c.getGreen();
+        int blue = c.getBlue();
+        
+        if (red >= factor) {
+            red = (int) (c.getRed() - factor);
+        }
+        if (green >= factor) {
+            green = (int) (c.getGreen() - factor);
+        }
+        if (blue >= factor) {
+            blue = (int) (c.getBlue() - factor);
+        }
 
+        setColor(new Color(red, green, blue));
+    }
+
+    public void lighten(double factor) {
+        Color c = getColor(); 
+
+        int red = c.getRed();
+        int green = c.getGreen();
+        int blue = c.getBlue();
  
-        if (red <= 255 - (255*factor)) {
-        	red = (int) (c.getRed() * (1 + factor));
+        if (red <= 255-factor) {
+            red = (int) (c.getRed() + factor);
         }
-        if (green <= 255 - (255*factor)) {
-        	green = (int) (c.getGreen() * (1 + factor));
+        if (green <= 255-factor) {
+            green = (int) (c.getGreen() + factor);
         }
-        if (blue <= 256 - (255*factor)) {
-        	System.out.println(blue);
-        	blue = (int) (c.getBlue() * (1 + factor));
+        if (blue <= 255-factor) {
+            blue = (int) (c.getBlue() + factor);
         }
 
         setColor(new Color(red, green, blue));

@@ -13,11 +13,11 @@ public class BlusterCritterRunner
     public static void main(String[] args)
     {
         ActorWorld world = new ActorWorld();
-        world.add(new Location(4, 4), new BlusterCritter(1));
-        world.add(new Location(6, 1), new BlusterCritter(1));
-        world.add(new Location(2, 6), new BlusterCritter(1));
-        world.add(new Location(4, 2), new BlusterCritter(1));
-        world.add(new Location(5, 4), new BlusterCritter(1));
+        world.add(new Location(4, 4), new BlusterCritter(2));
+        world.add(new Location(6, 1), new BlusterCritter(2));
+        world.add(new Location(2, 6), new BlusterCritter(2));
+        world.add(new Location(4, 2), new BlusterCritter(2));
+        world.add(new Location(5, 4), new BlusterCritter(2));
         world.show();
     }
 }
