@@ -23,7 +23,6 @@ public class BlusterCritter extends Critter {
         		n++;
         	}
         }
-        System.out.println(n);
 
         if (n >= courage) {
             darken(50);
